@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MinecraftDummy:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MinecraftDummy_jar</output-path>
+    <root id="archive" name="MinecraftDummy.jar">
+      <element id="module-output" name="MinecraftDummy" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/JMC.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
