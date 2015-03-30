@@ -1,4 +1,7 @@
-name: f3rdinand
-main: com.github.fate0608.f3rdinand
-version: 0.1
+name: f3rd
+version: 1.0
 author: f3rd
+main: com.github.fate0608.f3rdinand.f3rdinand
+commands:
+  testplug:
+    description: tests plugin
