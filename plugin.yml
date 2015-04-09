@@ -1,0 +1,7 @@
+name: f3rd
+version: 1.0
+author: f3rd
+main: com.github.fate0608.StopIt.StopIt
+commands:
+  stopit:
+    description: /stopit Delay Reason
