@@ -33,18 +33,40 @@ public class StopIt extends JavaPlugin
         Player player = null;
         if (sender instanceof Player) {
             player = (Player) sender;
+
             if (cmd.getName().equalsIgnoreCase("stopit"))
             {
                 if (!player.hasPermission("stopit.announce"))
                 {
                     return false;
                 }
-                if(args[0].equalsIgnoreCase("cancel"))
+
+
+                if(args.length > 0 && args[0].equalsIgnoreCase("cancel"))
                 {
                     _server.broadcastMessage(ChatColor.RED + "Server-Restart abgebrochen!");
                     _server.getScheduler().cancelAllTasks();
                     _isInProcess = false;
                     return true;
+                }
+
+                if(args.length == 1 && args[0].equalsIgnoreCase("help"))
+                {
+                    _server.broadcastMessage(ChatColor.RED + "Server-Restart Plugin");
+                    _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    _server.broadcastMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
+                    _server.broadcastMessage(ChatColor.AQUA + " | Plugin-Dev: f3rd");
+                    _server.broadcastMessage(ChatColor.AQUA + " | Developed for: Justminecraft.de");
+                    _server.broadcastMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
+                    _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    return true;
+                }
+
+                if(args.length < 2 || args == null)
+                {
+                    player.sendMessage(ChatColor.RED + "Du hast zu wenige Argumente übergeben!");
+                    player.sendMessage(ChatColor.RED + "Syntax: /stopit [Zeit bis Restart] [Grund]");
+                    return false;
                 }
 
                 if (args.length == 2)
