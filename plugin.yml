@@ -5,3 +5,9 @@ main: com.github.fate0608.StopIt.StopIt
 commands:
   stopit:
     description: /stopit Delay Reason
+  servername:
+    messages:
+      servername: JMC
+  ts3ip:
+    messages:
+      ts3ip: ip

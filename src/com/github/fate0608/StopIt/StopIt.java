@@ -24,6 +24,13 @@ public class StopIt extends JavaPlugin
 	public void onEnable()
     {
         ccs.sendMessage(ChatColor.GOLD + "[StopIt] wurde erfolgreich aktiviert.");
+        this.reloadConfig();
+        this.getConfig().options().header("StopIt-Plugin. Hier kannst du das Plugin vollständig konfigurieren.");
+        this.getConfig().addDefault("StopIt.commands.servername.messages.servername","JMC");
+        this.getConfig().addDefault("StopIt.commands.ts3ip.messages.ts3ip","ip");
+
+        this.getConfig().options().copyDefaults(true);
+        this.saveConfig();
     }
 
     @Override
@@ -56,7 +63,7 @@ public class StopIt extends JavaPlugin
                     _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     _server.broadcastMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
                     _server.broadcastMessage(ChatColor.AQUA + " | Plugin-Dev: f3rd");
-                    _server.broadcastMessage(ChatColor.AQUA + " | Developed for: Justminecraft.de");
+                    _server.broadcastMessage(ChatColor.AQUA + " | Developed for: " + this.getConfig().getString("StopIt.commands.servername.messages.servername"));
                     _server.broadcastMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
                     _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     return true;
@@ -83,7 +90,7 @@ public class StopIt extends JavaPlugin
                         _server.broadcastMessage(ChatColor.WHITE + " in " + ChatColor.RED + _countdownInMin + ChatColor.WHITE + " Minute(n) wegen " + ChatColor.RED + _reason);
                         _server.broadcastMessage(ChatColor.WHITE + " neugestartet...");
                         _server.broadcastMessage(ChatColor.WHITE + " Wir sind in wenigen Minuten wieder für euch da!");
-                        _server.broadcastMessage(ChatColor.WHITE + " Sollten Fragen auftregen: TS3-IP: justminecraft.de");
+                        _server.broadcastMessage(ChatColor.WHITE + " Sollten Fragen auftregen: TS3-IP: " + this.getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
                         _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     }
                     catch (Exception ex)
@@ -115,7 +122,7 @@ public class StopIt extends JavaPlugin
                                 _server.broadcastMessage(ChatColor.RED  + "Der Server wird nun heruntergefahren!");
                                 _server.broadcastMessage(ChatColor.GOLD + "Besucht uns solang gern auf unserer Homepage!");
                                 _server.broadcastMessage(ChatColor.AQUA + "www.justminecraft.de");
-                                _server.broadcastMessage(ChatColor.WHITE + "Bis gleich! Euer JMC Team!");
+                                _server.broadcastMessage(ChatColor.WHITE + "Bis gleich! Euer " + getConfig().getString("StopIt.commands.servername.messages.servername") + " Team!");
                                 playersShouldBeKicked = true;
                             }
                         }, _countdownInMin*60*20);
