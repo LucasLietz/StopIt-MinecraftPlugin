@@ -8,6 +8,8 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
+
 
 public class StopIt extends JavaPlugin
 {
@@ -24,10 +26,13 @@ public class StopIt extends JavaPlugin
 	public void onEnable()
     {
         ccs.sendMessage(ChatColor.GOLD + "[StopIt] wurde erfolgreich aktiviert.");
+        ccs.sendMessage("[StopIt] by f3rd");
         this.reloadConfig();
         this.getConfig().options().header("StopIt-Plugin. Hier kannst du das Plugin vollständig konfigurieren.");
-        this.getConfig().addDefault("StopIt.commands.servername.messages.servername","JMC");
-        this.getConfig().addDefault("StopIt.commands.ts3ip.messages.ts3ip","ip");
+        this.getConfig().addDefault("StopIt.commands.servername.messages.servername","servername");
+        this.getConfig().addDefault("StopIt.commands.ts3ip.messages.ts3ip","ts3ip");
+        this.getConfig().addDefault("StopIt.commands.homepage.messages.homepage","homepage");
+        this.getConfig().addDefault("StopIt.commands.excludeplayer.messages.excludeplayer","excludeplayer");
 
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
@@ -87,10 +92,10 @@ public class StopIt extends JavaPlugin
                         _reason = args[1].toString();
                         _server.broadcastMessage(ChatColor.GOLD + "\n\n\n\n\n\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         _server.broadcastMessage(ChatColor.WHITE + " Liebe Spieler, der Server wird ");
-                        _server.broadcastMessage(ChatColor.WHITE + " in " + ChatColor.RED + _countdownInMin + ChatColor.WHITE + " Minute(n) wegen " + ChatColor.RED + _reason);
-                        _server.broadcastMessage(ChatColor.WHITE + " neugestartet...");
+                        _server.broadcastMessage(ChatColor.WHITE + " in " + ChatColor.RED + _countdownInMin + ChatColor.WHITE + " Minute(n) neugestartet... ");
+                        _server.broadcastMessage(ChatColor.WHITE + " Grund: " + ChatColor.RED + _reason);
                         _server.broadcastMessage(ChatColor.WHITE + " Wir sind in wenigen Minuten wieder für euch da!");
-                        _server.broadcastMessage(ChatColor.WHITE + " Sollten Fragen auftregen: TS3-IP: " + this.getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
+                        _server.broadcastMessage(ChatColor.WHITE + " Sollten Fragen auftregen: TS3-IP: " + ChatColor.RED + this.getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
                         _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     }
                     catch (Exception ex)
@@ -110,33 +115,46 @@ public class StopIt extends JavaPlugin
 
                             public void run() {
                                 _server.broadcastMessage(ChatColor.GOLD + "\n\n\n\n\n\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                                _server.broadcastMessage(ChatColor.WHITE + "Achtung der Server startet in kurzer Zeit neu.");
-                                _server.broadcastMessage(ChatColor.WHITE + "Bitte verlasst rechtzeitig den Server.");
+                                _server.broadcastMessage(ChatColor.RED + "Achtung " + ChatColor.WHITE + "der Server startet in kurzer Zeit neu.");
+                                _server.broadcastMessage(ChatColor.WHITE + "Ihr werdet automatisch gekickt.");
                                 _server.broadcastMessage(ChatColor.GOLD + "\n\n\n\n\n\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~");
                             }
-                        }, 100L, 200L);
+                        }, (_countdownInMin-1)*60*20+100, 200L);
 
                         _server.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
 
                             public void run() {
-                                _server.broadcastMessage(ChatColor.RED  + "Der Server wird nun heruntergefahren!");
+                                _server.broadcastMessage(ChatColor.RED + "Der Server wird nun heruntergefahren!");
                                 _server.broadcastMessage(ChatColor.GOLD + "Besucht uns solang gern auf unserer Homepage!");
                                 _server.broadcastMessage(ChatColor.AQUA + "www.justminecraft.de");
                                 _server.broadcastMessage(ChatColor.WHITE + "Bis gleich! Euer " + getConfig().getString("StopIt.commands.servername.messages.servername") + " Team!");
                                 playersShouldBeKicked = true;
                             }
-                        }, _countdownInMin*60*20);
+                        }, _countdownInMin*60*20-60);
 
                         _server.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
 
                             public void run() {
                                 if(playersShouldBeKicked)
                                 {
-                                    for (Player p : _server.getOnlinePlayers()) {
-                                        p.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
-                                                     ChatColor.GREEN + "Besuch uns gern auf www.justminecraft.de\n" +
-                                                     ChatColor.AQUA + "Oder auf dem TS3: justminecraft.de");
+                                    List<String> excludedPlayer = null;
+                                    if(getConfig().getString("StopIt.commands.excludeplayer.messages.excludeplayer").contains(","))
+                                    {
+                                        String actualName = getConfig().getString("StopIt.commands.excludeplayer.messages.excludeplayer");
+                                        for (String split: actualName.split(",")){
+                                            excludedPlayer.add(split.trim().replace(" ", ""));
+                                        }
                                     }
+
+                                    for (Player p : _server.getOnlinePlayers())
+                                    {
+                                        _server.broadcastMessage("kicke nun.");
+                                        if(excludedPlayer.contains(p.getDisplayName().toLowerCase())) continue;
+                                        p.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
+                                                ChatColor.GREEN + "Besuch uns gern auf www.justminecraft.de\n" +
+                                                ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.homepage.messages.homepage"));
+                                    }
+                                    _server.broadcastMessage(ChatColor.RED + "Welten und Inventare werden gespeichert...");
                                     _server.dispatchCommand(ccs, "save-all");
                                     _isInProcess = false;
 
@@ -164,8 +182,8 @@ public class StopIt extends JavaPlugin
 
 
     @Override
-	public void onDisable(){
-
+	public void onDisable()
+    {
         ccs.sendMessage(ChatColor.RED + " [StopIt] wurde deaktiviert.");
 	}
 
