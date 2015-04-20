@@ -149,7 +149,10 @@ public class StopIt extends JavaPlugin
                                     for (Player p : _server.getOnlinePlayers())
                                     {
                                         _server.broadcastMessage("kicke nun.");
-                                        if(excludedPlayer.contains(p.getDisplayName().toLowerCase())) continue;
+                                        if(excludedPlayer.contains(p.getDisplayName().toLowerCase())){
+                                            _server.broadcastMessage("Ignoriere " + p.getDisplayName());
+                                            continue;
+                                        }
                                         p.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
                                                 ChatColor.GREEN + "Besuch uns gern auf www.justminecraft.de\n" +
                                                 ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.homepage.messages.homepage"));
