@@ -1,3 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: com.github.fate0608.StopIt.f3rdinand
-
