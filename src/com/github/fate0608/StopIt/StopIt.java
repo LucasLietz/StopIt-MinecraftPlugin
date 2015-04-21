@@ -8,8 +8,6 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.List;
-
 
 public class StopIt extends JavaPlugin
 {
@@ -17,11 +15,9 @@ public class StopIt extends JavaPlugin
 
     private int _countdownInMin;
     private boolean playersShouldBeKicked = false;
-    private int _timeLeft;
     private String _reason;
     private boolean _isInProcess = false;
     private String[] _excluded;
-    private int count;
     ConsoleCommandSender ccs = this.getServer().getConsoleSender();
 
 	@Override
@@ -70,7 +66,6 @@ public class StopIt extends JavaPlugin
                     _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     _server.broadcastMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
                     _server.broadcastMessage(ChatColor.AQUA + " | Plugin-Dev: f3rd");
-                    _server.broadcastMessage(ChatColor.AQUA + " | Developed for: " + this.getConfig().getString("StopIt.commands.servername.messages.servername"));
                     _server.broadcastMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
                     _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     return true;
@@ -90,7 +85,6 @@ public class StopIt extends JavaPlugin
                     try{
                         _isInProcess = true;
                         _countdownInMin = Integer.valueOf(args[0]).intValue();
-                        _timeLeft = _countdownInMin;
                         _reason = args[1].toString();
                         _server.broadcastMessage(ChatColor.GOLD + "\n\n\n\n\n\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~");
                         _server.broadcastMessage(ChatColor.WHITE + " Liebe Spieler, der Server wird ");
@@ -108,7 +102,6 @@ public class StopIt extends JavaPlugin
                         _isInProcess=false;
                         _reason="";
                         playersShouldBeKicked = false;
-                        _timeLeft=0;
 
                         return false;
                     }
@@ -128,7 +121,7 @@ public class StopIt extends JavaPlugin
                             public void run() {
                                 _server.broadcastMessage(ChatColor.RED + "Der Server wird nun heruntergefahren!");
                                 _server.broadcastMessage(ChatColor.GOLD + "Besucht uns solang gern auf unserer Homepage!");
-                                _server.broadcastMessage(ChatColor.AQUA + "www.justminecraft.de");
+                                _server.broadcastMessage(ChatColor.AQUA + getConfig().getString("StopIt.commands.homepage.messages.homepage"));
                                 _server.broadcastMessage(ChatColor.WHITE + "Bis gleich! Euer " + getConfig().getString("StopIt.commands.servername.messages.servername") + " Team!");
                                 playersShouldBeKicked = true;
                             }
