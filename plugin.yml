@@ -11,3 +11,10 @@ commands:
   ts3ip:
     messages:
       ts3ip: ip
+  excludeplayer:
+    messages:
+      excludeplayer:
+  autostopper:
+    description: Stopt den Server nach dem WorldSave
+    messages:
+      autostopper: false

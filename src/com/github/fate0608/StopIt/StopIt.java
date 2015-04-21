@@ -26,12 +26,14 @@ public class StopIt extends JavaPlugin
         ccs.sendMessage(ChatColor.GOLD + "[StopIt] wurde erfolgreich aktiviert.");
         ccs.sendMessage("[StopIt] by f3rd");
         this.reloadConfig();
-        this.getConfig().options().header("StopIt-Plugin. Hier kannst du das Plugin vollständig konfigurieren.");
-        this.getConfig().addDefault("StopIt.commands.servername.messages.servername","servername");
+        this.getConfig().options().header("StopIt-Plugin. Hier kannst du das Plugin vollständig konfigurieren.\n Servername, " +
+                "Ts3Ip, Homepage sollten selbsterklärend sein. ExcludedPlayers sind solche, die beim " +
+                "Kick der Spieler nicht gekickt werden. Der Autostopper stoppt den Server bei true oder nicht bei false.");
+        this.getConfig().addDefault("StopIt.commands.servername.messages.servername","SERVERNAME HIER");
         this.getConfig().addDefault("StopIt.commands.ts3ip.messages.ts3ip","ts3ip");
-        this.getConfig().addDefault("StopIt.commands.homepage.messages.homepage","homepage");
-        this.getConfig().addDefault("StopIt.commands.excludeplayer.messages.excludeplayer","excludeplayer");
-
+        this.getConfig().addDefault("StopIt.commands.homepage.messages.homepage","HOMEPAGE HIER");
+        this.getConfig().addDefault("StopIt.commands.excludeplayer.messages.excludeplayer","");
+        this.getConfig().addDefault("StopIt.commands.autostopper.messages.autostopper","false");
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
     }
@@ -71,8 +73,7 @@ public class StopIt extends JavaPlugin
                     return true;
                 }
 
-                if(args.length == 1 && args[0].equalsIgnoreCase("reload"))
-                {
+                if(args.length == 1 && args[0].equalsIgnoreCase("reload")) {
                     _server.broadcastMessage(ChatColor.RED + "[StopIt] Reloading Plugin");
                     this.getPluginLoader().disablePlugin(this);
                     this.getPluginLoader().enablePlugin(this);
@@ -142,43 +143,57 @@ public class StopIt extends JavaPlugin
                                 if(playersShouldBeKicked)
                                 {
 
-                                    if(getConfig().getString("StopIt.commands.excludeplayer.messages.excludeplayer").contains(","))
+                                    if(getConfig().getString("StopIt.commands.excludeplayer.messages.excludeplayer").contains(",") ||
+                                            getConfig().getString("StopIt.commands.excludeplayer.messages.excludeplayer").length() > 0)
                                     {
                                         String actualName = getConfig().getString("StopIt.commands.excludeplayer.messages.excludeplayer");
 
                                         String[] split= actualName.split(",");
                                         _excluded = split;
                                     }
+                                    else
+                                    {
+                                        String[] test = {""};
+                                        _excluded = test;
+                                    }
 
                                     for (Player onlinePlayer : _server.getOnlinePlayers())
                                     {
-                                        int amountExcl = _excluded.length-1;
-                                        boolean isPlayerInsideExludes = false;
-                                        for(int i = 0; i < amountExcl; i++)
+                                        if(_excluded[0] != "")
                                         {
-                                            if(onlinePlayer.getDisplayName() == _excluded[amountExcl].toString())
+                                            int amountExcl = _excluded.length-1;
+                                            boolean isPlayerInsideExludes = false;
+                                            for(int i = 0; i < amountExcl; i++)
                                             {
-                                                ccs.sendMessage(onlinePlayer.getDisplayName() + " wird ignoriert.");
-                                                isPlayerInsideExludes = true;
+                                                if(onlinePlayer.getDisplayName() == _excluded[amountExcl].toString())
+                                                {
+                                                    ccs.sendMessage(onlinePlayer.getDisplayName() + " wird ignoriert.");
+                                                    isPlayerInsideExludes = true;
+                                                }
+                                            }
+
+                                            if(isPlayerInsideExludes)
+                                            {
+                                                onlinePlayer.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
+                                                        ChatColor.GREEN + "Besuch uns gern auf " + getConfig().getString("StopIt.commands.homepage.messages.homepage") + "\n" +
+                                                        ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
+                                            }
+                                            else {
+                                                ccs.sendMessage(onlinePlayer.getDisplayName() + " ignoriert.");
                                             }
                                         }
-
-                                        if(isPlayerInsideExludes)
+                                        else
                                         {
                                             onlinePlayer.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
-                                                    ChatColor.GREEN + "Besuch uns gern auf www.justminecraft.de\n" +
-                                                    ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.homepage.messages.homepage"));
+                                                    ChatColor.GREEN + "Besuch uns gern auf " + getConfig().getString("StopIt.commands.homepage.messages.homepage") + "\n" +
+                                                    ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
                                         }
-                                        else {
-                                            ccs.sendMessage(onlinePlayer.getDisplayName() + " ignoriert.");
-                                        }
-
-
-
                                     }
                                     _server.broadcastMessage(ChatColor.RED + "Welten und Inventare werden gespeichert...");
                                     _server.dispatchCommand(ccs, "save-all");
                                     _isInProcess = false;
+
+                                    if(getConfig().getString("StopIt.commands.autostopper.messages.autostopper") == "true") _server.shutdown();
 
                                 }
                             }

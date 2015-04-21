@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc02a8a9-c7b7-485e-a959-ea9b60aa50bb" name="Default" comment="" />
+    <list default="true" id="bc02a8a9-c7b7-485e-a959-ea9b60aa50bb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Spigot183.xml" />
+      <change type="DELETED" beforePath="C:\Users\Lucas\Documents\StopIt-MinecraftPlugin\Spigot183.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/StopIt.iml" afterPath="$PROJECT_DIR$/StopIt.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/github/fate0608/StopIt/StopIt.java" afterPath="$PROJECT_DIR$/src/com/github/fate0608/StopIt/StopIt.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plugin.yml" afterPath="$PROJECT_DIR$/plugin.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="MinecraftDummy.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,14 +35,10 @@
       <file leaf-file-name="StopIt.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/github/fate0608/StopIt/StopIt.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49029982" vertical-offset="963" max-vertical-offset="3604">
-              <caret line="73" column="60" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.17989418" vertical-offset="476" max-vertical-offset="3757">
+              <caret line="34" column="92" selection-start-line="34" selection-start-column="92" selection-end-line="34" selection-end-column="92" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7140#9813#0" expanded="true" />
-                <element signature="e#9812#9813#0" expanded="true" />
-                <element signature="e#10416#10417#0" expanded="true" />
-                <element signature="e#10492#10493#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -44,8 +47,8 @@
       <file leaf-file-name="plugin.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+              <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -64,8 +67,8 @@
         <option value="$PROJECT_DIR$/src/com/github/fate0608/f3rdinand/Events.java" />
         <option value="$PROJECT_DIR$/src/com/github/fate0608/f3rdinand/f3rdinand.java" />
         <option value="$PROJECT_DIR$/src/com/github/fate0608/StopIt/StringHelper.java" />
-        <option value="$PROJECT_DIR$/plugin.yml" />
         <option value="$PROJECT_DIR$/src/com/github/fate0608/StopIt/StopIt.java" />
+        <option value="$PROJECT_DIR$/plugin.yml" />
       </list>
     </option>
   </component>
@@ -98,6 +101,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -150,8 +155,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -161,7 +164,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
@@ -171,7 +174,7 @@
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="minecraftdummy" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Stuff/srv/plugins" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Spigot183.jar!/" />
     <property name="FullScreen" value="false" />
     <property name="options.lastSelected" value="settings.github" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -310,7 +313,7 @@
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="JAR_PATH" value="$PROJECT_DIR$/JMC.jar" />
+      <option name="JAR_PATH" value="$PROJECT_DIR$/Spigot183.jar" />
       <envs />
       <method />
     </configuration>
@@ -455,14 +458,28 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/com/github/fate0608/StopIt/StopIt.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="3961">
+          <caret line="34" column="92" selection-start-line="34" selection-start-column="92" selection-end-line="34" selection-end-column="92" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plugin.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="100">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/github/fate0608/StopIt/StopIt.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3536">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -481,25 +498,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Spigot183.jar!/org/bukkit/entity/Player.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="4352">
-          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Spigot183.jar!/org/bukkit/plugin/java/JavaPlugin.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="848" max-vertical-offset="5678">
-          <caret line="114" column="29" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -517,10 +516,6 @@
           <caret line="68" column="22" selection-start-line="68" selection-start-column="22" selection-end-line="68" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -539,10 +534,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -561,10 +552,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -583,10 +570,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -605,10 +588,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -627,10 +606,6 @@
           <caret line="26" column="47" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -649,10 +624,6 @@
           <caret line="26" column="47" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -671,10 +642,6 @@
           <caret line="21" column="61" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -707,45 +674,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$PROJECT_DIR$/Spigot183.jar!/org/bukkit/configuration/MemorySection.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1605166" vertical-offset="3449" max-vertical-offset="12750">
-          <caret line="238" column="9" selection-start-line="238" selection-start-column="9" selection-end-line="238" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Spigot183.jar!/org/bukkit/plugin/java/JavaPlugin.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34870848" vertical-offset="848" max-vertical-offset="5678">
-          <caret line="114" column="29" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/Spigot183.jar!/org/bukkit/entity/Player.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="4352">
-          <caret line="29" column="11" selection-start-line="29" selection-start-column="11" selection-end-line="29" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="306">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/github/fate0608/StopIt/StopIt.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49029982" vertical-offset="963" max-vertical-offset="3604">
-          <caret line="73" column="60" selection-start-line="73" selection-start-column="60" selection-end-line="73" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.17989418" vertical-offset="476" max-vertical-offset="3757">
+          <caret line="34" column="92" selection-start-line="34" selection-start-column="92" selection-end-line="34" selection-end-column="92" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7140#9813#0" expanded="true" />
-            <element signature="e#9812#9813#0" expanded="true" />
-            <element signature="e#10416#10417#0" expanded="true" />
-            <element signature="e#10492#10493#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -817,7 +759,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>JMC</last-edited>
+          <last-edited>Spigot183</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
