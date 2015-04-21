@@ -20,6 +20,8 @@ public class StopIt extends JavaPlugin
     private int _timeLeft;
     private String _reason;
     private boolean _isInProcess = false;
+    private String[] _excluded;
+    private int count;
     ConsoleCommandSender ccs = this.getServer().getConsoleSender();
 
 	@Override
@@ -119,7 +121,7 @@ public class StopIt extends JavaPlugin
                                 _server.broadcastMessage(ChatColor.WHITE + "Ihr werdet automatisch gekickt.");
                                 _server.broadcastMessage(ChatColor.GOLD + "\n\n\n\n\n\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~");
                             }
-                        }, (_countdownInMin-1)*60*20+100, 200L);
+                        }, (_countdownInMin-1)*60*20+100, 400L);
 
                         _server.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
 
@@ -137,25 +139,40 @@ public class StopIt extends JavaPlugin
                             public void run() {
                                 if(playersShouldBeKicked)
                                 {
-                                    List<String> excludedPlayer = null;
+
                                     if(getConfig().getString("StopIt.commands.excludeplayer.messages.excludeplayer").contains(","))
                                     {
                                         String actualName = getConfig().getString("StopIt.commands.excludeplayer.messages.excludeplayer");
-                                        for (String split: actualName.split(",")){
-                                            excludedPlayer.add(split.trim().replace(" ", ""));
-                                        }
+
+                                        String[] split= actualName.split(",");
+                                        _excluded = split;
                                     }
 
-                                    for (Player p : _server.getOnlinePlayers())
+                                    for (Player onlinePlayer : _server.getOnlinePlayers())
                                     {
-                                        _server.broadcastMessage("kicke nun.");
-                                        if(excludedPlayer.contains(p.getDisplayName().toLowerCase())){
-                                            _server.broadcastMessage("Ignoriere " + p.getDisplayName());
-                                            continue;
+                                        int amountExcl = _excluded.length-1;
+                                        boolean isPlayerInsideExludes = false;
+                                        for(int i = 0; i < amountExcl; i++)
+                                        {
+                                            if(onlinePlayer.getDisplayName() == _excluded[amountExcl].toString())
+                                            {
+                                                ccs.sendMessage(onlinePlayer.getDisplayName() + " wird ignoriert.");
+                                                isPlayerInsideExludes = true;
+                                            }
                                         }
-                                        p.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
-                                                ChatColor.GREEN + "Besuch uns gern auf www.justminecraft.de\n" +
-                                                ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.homepage.messages.homepage"));
+
+                                        if(isPlayerInsideExludes)
+                                        {
+                                            onlinePlayer.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
+                                                    ChatColor.GREEN + "Besuch uns gern auf www.justminecraft.de\n" +
+                                                    ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.homepage.messages.homepage"));
+                                        }
+                                        else {
+                                            ccs.sendMessage(onlinePlayer.getDisplayName() + " ignoriert.");
+                                        }
+
+
+
                                     }
                                     _server.broadcastMessage(ChatColor.RED + "Welten und Inventare werden gespeichert...");
                                     _server.dispatchCommand(ccs, "save-all");
