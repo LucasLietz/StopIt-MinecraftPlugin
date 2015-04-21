@@ -71,6 +71,15 @@ public class StopIt extends JavaPlugin
                     return true;
                 }
 
+                if(args.length == 1 && args[0].equalsIgnoreCase("reload"))
+                {
+                    _server.broadcastMessage(ChatColor.RED + "[StopIt] Reloading Plugin");
+                    this.getPluginLoader().disablePlugin(this);
+                    this.getPluginLoader().enablePlugin(this);
+                    _server.broadcastMessage(ChatColor.RED + "[StopIt] Reload complete");
+                    return true;
+                }
+
                 if(args.length < 2 || args == null)
                 {
                     player.sendMessage(ChatColor.RED + "Du hast zu wenige Argumente übergeben!");
