@@ -64,20 +64,19 @@ public class StopIt extends JavaPlugin
 
                 if(args.length == 1 && args[0].equalsIgnoreCase("help"))
                 {
-                    _server.broadcastMessage(ChatColor.RED + "Server-Restart Plugin");
-                    _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
-                    _server.broadcastMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
-                    _server.broadcastMessage(ChatColor.AQUA + " | Plugin-Dev: f3rd");
-                    _server.broadcastMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
-                    _server.broadcastMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    player.sendMessage(ChatColor.RED + "Server-Restart Plugin");
+                    player.sendMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                    player.sendMessage(ChatColor.AQUA + " | Syntax: /stopit [Zeit] [Grund]");
+                    player.sendMessage(ChatColor.AQUA + " | Plugin-Dev: f3rd");
+                    player.sendMessage(ChatColor.GOLD + "~~~~~~~~~~~~~~~~~~~~~~~~~~");
                     return true;
                 }
 
                 if(args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-                    _server.broadcastMessage(ChatColor.RED + "[StopIt] Reloading Plugin");
+                    ccs.sendMessage(ChatColor.RED + "[StopIt] Reloading Plugin");
                     this.getPluginLoader().disablePlugin(this);
                     this.getPluginLoader().enablePlugin(this);
-                    _server.broadcastMessage(ChatColor.RED + "[StopIt] Reload complete");
+                    ccs.sendMessage(ChatColor.RED + "[StopIt] Reload complete");
                     return true;
                 }
 
