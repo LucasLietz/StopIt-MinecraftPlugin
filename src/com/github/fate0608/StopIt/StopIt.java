@@ -43,8 +43,7 @@ public class StopIt extends JavaPlugin
         _server = getServer();
 
         Player player = null;
-        if (sender instanceof Player) {
-            player = (Player) sender;
+        player = (Player) sender;
 
             if (cmd.getName().equalsIgnoreCase("stopit"))
             {
@@ -156,38 +155,7 @@ public class StopIt extends JavaPlugin
                                         _excluded = test;
                                     }
 
-                                    for (Player onlinePlayer : _server.getOnlinePlayers())
-                                    {
-                                        if(_excluded[0] != "")
-                                        {
-                                            int amountExcl = _excluded.length-1;
-                                            boolean isPlayerInsideExludes = false;
-                                            for(int i = 0; i < amountExcl; i++)
-                                            {
-                                                if(onlinePlayer.getDisplayName() == _excluded[amountExcl].toString())
-                                                {
-                                                    ccs.sendMessage(onlinePlayer.getDisplayName() + " wird ignoriert.");
-                                                    isPlayerInsideExludes = true;
-                                                }
-                                            }
-
-                                            if(isPlayerInsideExludes)
-                                            {
-                                                onlinePlayer.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
-                                                        ChatColor.GREEN + "Besuch uns gern auf " + getConfig().getString("StopIt.commands.homepage.messages.homepage") + "\n" +
-                                                        ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
-                                            }
-                                            else {
-                                                ccs.sendMessage(onlinePlayer.getDisplayName() + " ignoriert.");
-                                            }
-                                        }
-                                        else
-                                        {
-                                            onlinePlayer.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
-                                                    ChatColor.GREEN + "Besuch uns gern auf " + getConfig().getString("StopIt.commands.homepage.messages.homepage") + "\n" +
-                                                    ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
-                                        }
-                                    }
+                                    KickNonExludedPlayer();
                                     _server.broadcastMessage(ChatColor.RED + "Welten und Inventare werden gespeichert...");
                                     _server.dispatchCommand(ccs, "save-all");
                                     _isInProcess = false;
@@ -212,8 +180,45 @@ public class StopIt extends JavaPlugin
             }
 
             return false;
+
+
+    }
+
+    private void KickNonExludedPlayer() {
+        for (Player onlinePlayer : _server.getOnlinePlayers())
+        {
+            if(_excluded[0].length()>0)
+            {
+                int amountExcl = _excluded.length;
+                boolean isPlayerInsideExludes = false;
+                for(int i = 0; i < amountExcl; i++)
+                {
+                    ccs.sendMessage(onlinePlayer.getDisplayName() + " " + _excluded[amountExcl-1].toString());
+                    if(onlinePlayer.getDisplayName() == _excluded[amountExcl-1].toString())
+                    {
+                        ccs.sendMessage(onlinePlayer.getDisplayName() + " wird ignoriert.");
+                        isPlayerInsideExludes = true;
+                    }
+                }
+
+                if(isPlayerInsideExludes)
+                {
+                    ccs.sendMessage(onlinePlayer.getDisplayName() + " ignoriert.");
+                }
+                else {
+
+                    onlinePlayer.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
+                            ChatColor.GREEN + "Besuch uns gern auf " + getConfig().getString("StopIt.commands.homepage.messages.homepage") + "\n" +
+                            ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
+                }
+            }
+            else
+            {
+                onlinePlayer.kickPlayer(ChatColor.GOLD + "Alle wurden wegen eines Restarts ausgeloggt. Bis gleich hoffentlich! :)\n" +
+                        ChatColor.GREEN + "Besuch uns gern auf " + getConfig().getString("StopIt.commands.homepage.messages.homepage") + "\n" +
+                        ChatColor.AQUA + "Oder auf dem TS3: " + getConfig().getString("StopIt.commands.ts3ip.messages.ts3ip"));
+            }
         }
-        return false;
     }
 
 
