@@ -4,7 +4,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class f3rdinand extends JavaPlugin implements Listener{
@@ -12,7 +15,7 @@ public class f3rdinand extends JavaPlugin implements Listener{
 	@Override
 	public void onEnable(){
 		getServer().getPluginManager().registerEvents(this,this);
-		this.getLogger().info(ChatColor.GREEN + "f3rdinand wurde erfolgreich aktiviert.");
+		this.getLogger().info(ChatColor.GREEN + "Battlegrounds wurde erfolgreich aktiviert.");
 	}
 
     @Override
@@ -22,13 +25,19 @@ public class f3rdinand extends JavaPlugin implements Listener{
             player = (Player) sender;
         }
 
-        if(cmd.getName().equalsIgnoreCase("testplug")){ // Wenn der Spieler /basic eingibt, dann tue das folgende...
-            sender.sendMessage(ChatColor.RED + "Das Plugin funktioniert soweit," + ChatColor.GREEN +  player.getDisplayName().toString() + ".");
+        if(cmd.getName().equalsIgnoreCase("testplug")){ 
+            sender.sendMessage(ChatColor.RED + "Das Plugin funktioniert soweit, " + ChatColor.GREEN +  player.getDisplayName().toString() + ".");
             return true;
-        } // Wenn das passiert, wird die Funktion abbrechen und true als Wert zurückgeben. Wenn nicht, dann wird false als Wert zurückgegeben.
+        } 
         return false;
     }
-
+    
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onLogin(PlayerLoginEvent event) {
+    	getServer().broadcastMessage("[" + ChatColor.GREEN + "+" + ChatColor.RESET + "] " + event.getPlayer().getDisplayName());
+    	
+    }
+    
 	@Override 
 	public void onDisable(){
 
