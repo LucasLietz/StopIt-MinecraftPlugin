@@ -18,7 +18,6 @@ public class ArrowHitListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
     public void onProjectileHit(ProjectileHitEvent e) {
-    	Player shooter = (Player) e.getEntity().getShooter();
     	Location locationHit = e.getEntity().getLocation();
     		Server _srv = e.getEntity().getServer();
 
