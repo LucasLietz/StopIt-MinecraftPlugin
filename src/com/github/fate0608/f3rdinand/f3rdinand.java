@@ -4,17 +4,17 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class f3rdinand extends JavaPlugin implements Listener{
+public class f3rdinand extends JavaPlugin {
 	
 	@Override
 	public void onEnable(){
-		getServer().getPluginManager().registerEvents(this,this);
+		
+		getServer().getPluginManager().registerEvents(new Listeners.OnPlayerJoin(), this);
+		getServer().getPluginManager().registerEvents(new Listeners.ArrowHitListener(), this);
+		getServer().getPluginManager().registerEvents(new Listeners.OnEntityKilled(), this);
+		
 		this.getLogger().info(ChatColor.GREEN + "Battlegrounds wurde erfolgreich aktiviert.");
 	}
 
@@ -32,11 +32,7 @@ public class f3rdinand extends JavaPlugin implements Listener{
         return false;
     }
     
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onLogin(PlayerLoginEvent event) {
-    	getServer().broadcastMessage("[" + ChatColor.GREEN + "+" + ChatColor.RESET + "] " + event.getPlayer().getDisplayName());
-    	
-    }
+
     
 	@Override 
 	public void onDisable(){
