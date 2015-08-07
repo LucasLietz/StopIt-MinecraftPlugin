@@ -25,8 +25,14 @@ public class OnEntityKilled implements Listener{
     	
     	event.getEntity().getServer().broadcastMessage(ChatColor.GOLD + killer.getDisplayName() + "'s Kills:" + ChatColor.DARK_AQUA + k);
     	killer.setCustomName("[" + k +"] " + killer.getDisplayName());
+    	double newBorderSizeD=0;
+    	int timeInSec = 60;
     	
-    	srv.dispatchCommand(killer,"worldborder set 5 10");
+    	//newBorderSizeD = srv.getOnlinePlayers().size()*100*0.25;
+    	
+    	
+    	
+    	//srv.dispatchCommand(killer,"worldborder set " + newBorderSize + " " + timeInSec); 
     	
     }
 
