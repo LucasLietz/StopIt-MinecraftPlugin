@@ -12,6 +12,8 @@ public class f3rdinand extends JavaPlugin {
 	public void onEnable(){
 		
 		getServer().getPluginManager().registerEvents(new Listeners.OnPlayerJoin(this,getServer()),this);
+		getServer().getPluginManager().registerEvents(new Listeners.OnPlayerDeath(this,getServer()),this);
+
 		//getServer().getPluginManager().registerEvents(new Listeners.ArrowHitListener(), this);
 		//getServer().getPluginManager().registerEvents(new Listeners.OnEntityKilled(), this);
 		//getServer().getPluginManager().registerEvents(new Listeners.OnPlayerMove(), this);
