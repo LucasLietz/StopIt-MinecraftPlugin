@@ -1,11 +1,9 @@
 <component name="libraryTable">
   <library name="JMC">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/Spigot183.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JMC.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/Spigot183.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
