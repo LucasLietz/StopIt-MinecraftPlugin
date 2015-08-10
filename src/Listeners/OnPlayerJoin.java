@@ -68,7 +68,7 @@ public class OnPlayerJoin implements Listener{
     @EventHandler(priority=EventPriority.NORMAL)
     public void onBlockBreak(BlockBreakEvent bbe)
     {	
-    	if(!_jp.canceled){
+    	if(!_jp.canceled && _jp.player.getUniqueId() == bbe.getPlayer().getUniqueId()){
     		bbe.setCancelled(true);
     	}
     }
@@ -76,8 +76,7 @@ public class OnPlayerJoin implements Listener{
     @EventHandler(priority=EventPriority.NORMAL)
     public void move(PlayerMoveEvent move)
     {
-		 if(!_jp.canceled)
-		 {
+    	if(!_jp.canceled && _jp.player.getUniqueId() == move.getPlayer().getUniqueId()){
 	        Location from=move.getFrom();
 	        Location to=move.getTo();
 	        double x=Math.floor(from.getX());
@@ -94,7 +93,7 @@ public class OnPlayerJoin implements Listener{
     @EventHandler(priority=EventPriority.NORMAL)
     public void move(EntityDamageEvent damage)
     {
-    	if(!_jp.canceled){
+    	if(!_jp.canceled && _jp.player.getUniqueId() == damage.getEntity().getUniqueId()){
         	Player player = (Player)damage.getEntity();
         	damage.setCancelled(true);
         	player.sendMessage(ChatColor.RED + "Die Schutzzeit läuft noch! Du kannst nicht angreifen oder angegriffen werden!");
