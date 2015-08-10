@@ -1,7 +1,7 @@
-name: f3rd
+name: Battlegrounds
 version: 1.0
 author: f3rd
-main: com.github.fate0608.f3rdinand.f3rdinand
+main: com.github.fate0608.Battlegrounds.Battlegrounds
 commands:
-  testplug:
+  bg:
     description: tests plugin

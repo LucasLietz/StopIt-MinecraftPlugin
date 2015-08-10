@@ -9,36 +9,41 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.github.fate0608.f3rdinand.JoinedPlayer;
-import com.github.fate0608.f3rdinand.f3rdinand;
+import com.github.fate0608.Battlegrounds.JoinedPlayer;
+import com.github.fate0608.Battlegrounds.Battlegrounds;
 
 public class OnPlayerJoin implements Listener{
 	
-    private f3rdinand plugin;
+    private Battlegrounds plugin;
     private Server s;
     private JoinedPlayer _jp;
 	private int invincibleTime = 20;
+	private boolean bgStarted;
 
-    public OnPlayerJoin(f3rdinand instance, Server server) {
+    public OnPlayerJoin(Battlegrounds instance, Server server, boolean isStarted) {
         plugin = instance;
         s=server;
+        bgStarted = isStarted;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onLogin(PlayerJoinEvent event) {
-    	JoinedPlayer jp = new JoinedPlayer();
-    	jp.invincible = 20;
-    	jp.player = event.getPlayer();
-    	jp.taskId = 0;
-    	jp.canceled = false;
-
-    	event.setJoinMessage(ChatColor.GOLD + jp.player.getDisplayName() + ChatColor.DARK_AQUA + " hat den Server betreten. Er ist in " + invincibleTime + " Sekunden angreifbar!");  	
     	
-    	startScheduler(jp);
+    	if(bgStarted)
+    	{
+	    	JoinedPlayer jp = new JoinedPlayer();
+	    	jp.invincible = 20;
+	    	jp.player = event.getPlayer();
+	    	jp.taskId = 0;
+	    	jp.canceled = false;
+	
+	    	event.setJoinMessage(ChatColor.GOLD + jp.player.getDisplayName() + ChatColor.DARK_AQUA + " hat den Server betreten. Er ist in " + invincibleTime + " Sekunden angreifbar!");  	
+	    	
+	    	startScheduler(jp);
+    	}
     }
     
     public void startScheduler(JoinedPlayer jp){
@@ -68,7 +73,7 @@ public class OnPlayerJoin implements Listener{
     @EventHandler(priority=EventPriority.NORMAL)
     public void onBlockBreak(BlockBreakEvent bbe)
     {	
-    	if(!_jp.canceled && _jp.player.getUniqueId() == bbe.getPlayer().getUniqueId()){
+    	if(bgStarted && !_jp.canceled && _jp.player.getUniqueId() == bbe.getPlayer().getUniqueId()){
     		bbe.setCancelled(true);
     	}
     }
@@ -76,7 +81,7 @@ public class OnPlayerJoin implements Listener{
     @EventHandler(priority=EventPriority.NORMAL)
     public void move(PlayerMoveEvent move)
     {
-    	if(!_jp.canceled && _jp.player.getUniqueId() == move.getPlayer().getUniqueId()){
+    	if(bgStarted && !_jp.canceled && _jp.player.getUniqueId() == move.getPlayer().getUniqueId()){
 	        Location from=move.getFrom();
 	        Location to=move.getTo();
 	        double x=Math.floor(from.getX());
@@ -93,7 +98,7 @@ public class OnPlayerJoin implements Listener{
     @EventHandler(priority=EventPriority.NORMAL)
     public void move(EntityDamageEvent damage)
     {
-    	if(!_jp.canceled && _jp.player.getUniqueId() == damage.getEntity().getUniqueId()){
+    	if(bgStarted &&  !_jp.canceled && _jp.player.getUniqueId() == damage.getEntity().getUniqueId()){
         	Player player = (Player)damage.getEntity();
         	damage.setCancelled(true);
         	player.sendMessage(ChatColor.RED + "Die Schutzzeit läuft noch! Du kannst nicht angreifen oder angegriffen werden!");
